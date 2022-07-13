@@ -16,12 +16,4 @@ $sql = "INSERT INTO coo ( longitudine, latitudine, descriere , tmp_name , name ,
 $result = mysqli_query($con,$sql);
 echo "coordonatele au fost introduse";
 header('location: map3.php');
-
-
-
-
-
-
-
-
   ?>

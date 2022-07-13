@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="sty.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <style>
        /* Set the size of the div element that contains the map */
       #map {
@@ -12,10 +12,9 @@
        }
 
        .cont{
-         margin-top: 200px;
-         height: 800px;  /* The height is 400 pixels */
-         width: 30%;
-         float: right;
+        height: 800px;
+        width: 30%;
+        float: right;
        }
 
        .logout{
@@ -37,43 +36,40 @@
   <body>
     <!-- COO Insert ---------------------->
     <div class="cont">
-    <form action="myphp.php" method="POST" enctype="multipart/form-data">
+      <form action="myphp.php" method="POST" enctype="multipart/form-data">
+        <div class="input-group">
+          <label>Icons</label>
+          <select class="input-group" name="icon">
+            <option value="parking_lot_maps.png">Parking</option>
+            <option value="library_maps.png">Library</option>
+            <option value="info-i_maps.png">information center</option>
+            <option value="beachflag.png">Beach</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Latitude</label>
+          <input type="text" name="latitudine"placeholder="latitudine" required>
+        </div>
+        <div class="input-group">
+          <label>Longitudine</label>
+          <input type="text" name="longitudine"placeholder="longitudine" required>
+        </div>
+        <div class="input-group">
+          <label>Description</label>
+          <input type="text" name="descriere"placeholder="Description" required>
+        </div>
 
+        <div class="input-group">
+        <label>upload</label>
+        <input type="file" name="file" value="" required>
+        </div>
+        <div class="input-group">
 
-      <div class="input-group">
-        <label>Icon</label>
-        <select class="input-group" name="icon">
-    <option value="parking_lot_maps.png">Parcare</option>
-    <option value="library_maps.png">Librarie</option>
-    <option value="info-i_maps.png">Centru de informatii</option>
-    </select>
-      </div>
-      <div class="input-group">
-        <label>latitudine</label>
-        <input type="text" name="latitudine"placeholder="latitudine">
-      </div>
-      <div class="input-group">
-        <label>longitudine</label>
-        <input type="text" name="longitudine"placeholder="longitudine">
-      </div>
-      <div class="input-group">
-        <label>Description</label>
-        <input type="text" name="descriere"placeholder="Description">
-      </div>
-
-      <div class="input-group">
-       <label>upload</label>
-      <input type="file" name="file" value="">
+          <input type="submit" class="btn" name="submit" value="trimite">
+        </div>
+      </form>
   </div>
-      <div class="input-group">
-
-        <input type="submit" class="btn" name="submit" value="trimite">
-      </div>
-
-    </form>
-  </div>
-  <input type="button" value="Logout" class="logout"
-onClick="document.location.href='logout.php'" />
+  <input type="button" value="Logout" class="logout" onClick="document.location.href='logout.php'" />
     <!---------------------------------------------------------->
 
     <!--The div element for the map -->
@@ -88,41 +84,32 @@ function initMap() {
 	  center: new google.maps.LatLng(44.4267674 , 26.102538390000063),
     });
 
+    
+
     <?php
-require 'new.php';
+        require 'new.php';
 
-$sql_read = "SELECT * FROM coo";
-			$result = mysqli_query($con, $sql_read);
-			if(! $result )
-				{
-					die('Could not read data: ' . mysqli_error());
-				}
+        $sql_read = "SELECT * FROM coo";
+              $result = mysqli_query($con, $sql_read);
+              if(! $result )
+                {
+                  die('Could not read data: ' . mysqli_error());
+                }
 
-        echo "  var iconBase =
-                              'https://developers.google.com/maps/documentation/javascript/examples/full/images/';
-              ";
+                echo "var iconBase ='https://developers.google.com/maps/documentation/javascript/examples/full/images/';";
 
-        while($row = mysqli_fetch_array($result)) {
-          $lat=$row['latitudine'];
-          $lng=$row['longitudine'];
-          $des=$row['descriere'];
-          $icon=$row['icon'];
-
-          echo "var marker = new google.maps.Marker({position:{lat:$lat,lng:$lng},map: map,icon: iconBase + '$icon'});";
-        //  echo "
-
-        //  marker.addListener('click', function() {
-        //  infowindow.open(map, marker);
-          //  });";
-        }
-
-        //   echo "
-      //  var infowindow = new google.maps.InfoWindow({
-      //  content: 'awd'
-        // });";
-
-     ?>
-
+                while($row = mysqli_fetch_array($result)) {
+                  $lat=$row['latitudine'];
+                  $lng=$row['longitudine'];
+                  $des=$row['descriere'];
+                  $icon=$row['icon'];
+                
+                  echo "var marker = new google.maps.Marker({position:{lat:$lat,lng:$lng},map: map,icon: iconBase + '$icon'});";
+                  // echo "var infowindow = new google.maps.InfoWindow({content: '<div>Location latitude : $lat</div><br /> <div>Location latitude : $lng</div> <br /> <div>Location latitude : $des</div> <br /> <div>Location latitude : $icon</div>'});";
+                  // echo "google.maps.event.addListener(marker , 'click', function() {infowindow.open(map, marker);});";
+                  
+                }
+            ?>
 }
     </script>
     <!--Load the API from the specified URL
@@ -131,7 +118,7 @@ $sql_read = "SELECT * FROM coo";
     * The callback parameter executes the initMap() function
     -->
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByKEo-eVV5YXXbbpGUsL7_Leuxb8c543U&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAd3EoT7b9JQqcAbk9cTwQzu7xf3lcbXhg&callback=initMap">
     </script>
   </body>
 </html>
