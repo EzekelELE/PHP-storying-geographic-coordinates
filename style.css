@@ -79,3 +79,14 @@ form,
   border: 1px solid #3c763d;
   margin-bottom: 20px;
 }
+
+.errorMsg {
+  background-color: red;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+.signUp {
+  margin-top: 20px;
+}

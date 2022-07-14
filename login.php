@@ -21,7 +21,7 @@
 
 		<div class="input-group">
 			<label>Username</label>
-			<input type="text" name="username" required="required"> <!--Eticheta <input> indică un câmp unde utilizatorul
+			<input type="text" name="username" > <!--Eticheta <input> indică un câmp unde utilizatorul
 				                                                         va putea intorducere numele de utilizator pentru a urma validarea acestuia.
 																																 Atributul "type" are rolul de a specifica tipul cămpului ce va urma sa fie intordus.
 																															 Atributul "required" are rolul de a garanta ca
@@ -31,7 +31,7 @@
 		</div>
 		<div class="input-group">
 			<label>Password</label>
-			<input type="password" name="password" required="required"> <!--Eticheta <input> indică un câmp  unde utilizatorul
+			<input type="password" name="password" > <!--Eticheta <input> indică un câmp  unde utilizatorul
 				                                                         va putea intorducere parola de utilizator pentru a urma validarea acestuia.
 																																 Atributul "type" are rolul de a specifica tipul cămpului ce va urma sa fie intordus.
 																															 Atributul "required" are rolul de a garanta ca
@@ -44,12 +44,19 @@
 			 																																			acesta va rula scriptul server.php	-->
 		</div>
 		<p>
-		<a  href="register.php">Sign up</a>      <!--In caz că utilizatorul este nou pe platformă el
+		<?php
+			foreach($errors as $value){
+			echo "<div class=\"errorMsg\">".$value."</div>";
+			}
+
+		?>
+		<a class="signUp"  href="register.php">Sign up</a>      <!--In caz că utilizatorul este nou pe platformă el
 			                                            are posibilitatea de aș crea un cont
 		                                           	-->
 		</p>
+
 	</form>
 
-
+	
 </body>
 </html>

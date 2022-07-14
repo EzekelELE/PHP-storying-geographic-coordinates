@@ -87,23 +87,26 @@ function initMap() {
     
 
     <?php
+    //establishing the data base connection
         require 'new.php';
-
+    //select eveything from the coo table
         $sql_read = "SELECT * FROM coo";
               $result = mysqli_query($con, $sql_read);
+              //check if it's empty or if an error occured
               if(! $result )
                 {
+                  //does close the connection with the database
                   die('Could not read data: ' . mysqli_error());
                 }
-
+                //retrive the icon images from the google maps servers
                 echo "var iconBase ='https://developers.google.com/maps/documentation/javascript/examples/full/images/';";
-
+                //as far as there are rows to retrive from the database , create new markers
                 while($row = mysqli_fetch_array($result)) {
                   $lat=$row['latitudine'];
                   $lng=$row['longitudine'];
                   $des=$row['descriere'];
                   $icon=$row['icon'];
-                
+                //displays a marker with specific coordonates from the database and a custom icon
                   echo "var marker = new google.maps.Marker({position:{lat:$lat,lng:$lng},map: map,icon: iconBase + '$icon'});";
                   // echo "var infowindow = new google.maps.InfoWindow({content: '<div>Location latitude : $lat</div><br /> <div>Location latitude : $lng</div> <br /> <div>Location latitude : $des</div> <br /> <div>Location latitude : $icon</div>'});";
                   // echo "google.maps.event.addListener(marker , 'click', function() {infowindow.open(map, marker);});";
